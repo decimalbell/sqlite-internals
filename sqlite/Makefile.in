@@ -127,8 +127,8 @@ parse.c:	$(TOP)/src/parse.y lemon
 	cp $(TOP)/src/parse.y .
 	./lemon parse.y
 
-sqlite.h:	$(TOP)/src/sqlite.h.in
-	sed s/--VERS--/`cat ${TOP}/VERSION`/ $(TOP)/src/sqlite.h.in >sqlite.h
+sqlite.h:	$(TOP)/src/sqlite.h.in 
+	sed -e s/--VERS--/`cat ${TOP}/VERSION`/ $(TOP)/src/sqlite.h.in >sqlite.h
 
 tokenize.o:	$(TOP)/src/tokenize.c $(HDR)
 	$(TCC) $(GDBM_FLAGS) -c $(TOP)/src/tokenize.c
@@ -229,6 +229,11 @@ website:	$(PUBLISH)
 publish:	$(PUBLISH)
 	chmod 0644 $(PUBLISH)
 	scp $(PUBLISH) hwaci@oak.he.net:public_html/sw/sqlite
+
+install:	sqlite libsqlite.a sqlite.h
+	mv sqlite /usr/bin
+	mv libsqlite.a /usr/lib
+	mv sqlite.h /usr/include
 
 clean:	
 	rm -f *.o sqlite libsqlite.a sqlite.h

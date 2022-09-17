@@ -17,6 +17,22 @@ proc chng {date desc} {
   puts "<DD><P><UL>$desc</UL></P></DD>"
 }
 
+chng {2000 Aug 22 (Version 1.0.3)} {
+<li>In the sqlite shell, print the "Database opened READ ONLY" message
+    to stderr instead of stdout.</li>
+<li>In the sqlite shell, now print the version number on initial startup.</li>
+<li>Add the <b>sqlite_version[]</b> string constant to the library</li>
+<li>Makefile updates</li>
+<li>Bug fix: incorrect VDBE code was being generated for the following
+    circumstance: a query on an indexed table containing a WHERE clause with
+    an IN operator that had a subquery on its right-hand side.</li>
+}
+
+chng {2000 Aug 18 (Version 1.0.1)} {
+<li>Fix a bug in the configure script.</li>
+<li>Minor revisions to the website.</li>
+}
+
 chng {2000 Aug 17 (Version 1.0)} {
 <li>Change the <b>sqlite</b> program so that it can read
     databases for which it lacks write permission.  (It used to
